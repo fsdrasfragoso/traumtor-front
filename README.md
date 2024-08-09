@@ -19,4 +19,4 @@ Antes de começar, certifique-se de ter as seguintes ferramentas instaladas em s
 
 1. Clone este repositório para a sua máquina local:
    ```sh
-   git clone https://github.com/seu-usuario/seu-repositorio.git
+   git clone https://github.com/fsdrasfragoso/traumtor-front
