@@ -20,7 +20,7 @@ const LoginPage = () => {
         alert('TESTE');
       // Armazene o token (por exemplo, no localStorage)
       localStorage.setItem('accessToken', footballer.access_token);
-
+        
       // Redireciona para a página do futebolista
       navigate('/footballer');
     } catch (error) {
