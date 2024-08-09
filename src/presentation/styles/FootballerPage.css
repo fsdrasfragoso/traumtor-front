@@ -1,0 +1,24 @@
+/* src/styles/FootballerPage.css */
+.footballer-page {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .footballer-details h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .footballer-details p {
+    margin: 5px 0;
+  }
+  
+  .footballer-details ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .footballer-details li {
+    margin: 5px 0;
+  }
+  

@@ -1,0 +1,30 @@
+.futsal-field {
+  position: relative;
+  width: 200px; /* Adjust width as needed */
+  height: 300px; /* Adjust height as needed */
+  background-color: #1E90FF;
+  border: 5px solid red;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.player {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50%;
+  color: white;
+  text-align: center;
+  line-height: 20px;
+}
+
+.title-futsal
+{
+  position: absolute;
+  bottom: 134px;
+  left: 224px;
+}

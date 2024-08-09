@@ -1,0 +1,38 @@
+/* styles/LoginPage.css */
+
+.section_padding {
+    padding: 100px 0;
+  }
+  
+  .login_part {
+    background-color: #f8f8f8;
+  }
+  
+  .login_part_text {
+    margin-bottom: 50px;
+  }
+  
+  .login_part_form {
+    padding: 50px;
+    background: #fff;
+    border-radius: 10px;
+  }
+  
+  .btn_3 {
+    background: #5fbae9;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 50px;
+    display: inline-block;
+    text-transform: uppercase;
+  }
+  
+  .creat_account input {
+    margin-right: 10px;
+  }
+  
+  .lost_pass {
+    margin-top: 15px;
+    display: block;
+  }
+  
