@@ -13,14 +13,14 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const authService = new AuthenticationService();
-    alert('AAAAAAA');
+    
     try {
       const footballer = await authService.login(email, password);
       console.log('Login realizado com sucesso', footballer);
-        alert('TESTE');
+        
       // Armazene o token (por exemplo, no localStorage)
       localStorage.setItem('accessToken', footballer.access_token);
-        
+
       // Redireciona para a página do futebolista
       navigate('/footballer');
     } catch (error) {

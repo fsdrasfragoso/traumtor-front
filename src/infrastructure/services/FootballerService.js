@@ -6,7 +6,7 @@ class FootballerService {
         this.api = new FootballMatchAPI();
     }
 
-    async login(credentials) {
+    async authenticate(credentials) {
         const result = await this.api.login(credentials);
         if (result.access_token) {
             localStorage.setItem('accessToken', result.access_token);

@@ -16,7 +16,7 @@ const LoginPage = () => {
         try {
            
             const footballer = await authService.login(email, password);
-            alert('aaaaaaaaa');
+            
             alert(footballer);
             console.log('Login realizado com sucesso', footballer);
             navigate('/footballer');  // Redireciona para a página do futebolista
