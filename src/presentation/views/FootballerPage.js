@@ -4,6 +4,7 @@ import FootballerService from '../../infrastructure/services/FootballerService';
 import Modalities from '../components/Modalities';
 import Positions from '../components/Positions';
 import Header from '../components/Header';
+
 const FootballerPage = () => {
     const [footballerData, setFootballerData] = useState(null);
     const navigate = useNavigate();
@@ -28,8 +29,9 @@ const FootballerPage = () => {
     }
 
     return (
-        <Header />
+     
         <div>
+            <Header />
             <h1>{footballerData.footballer.name}</h1>
             <p>Email: {footballerData.footballer.email}</p>
             <p>Documento: {footballerData.footballer.document}</p>
