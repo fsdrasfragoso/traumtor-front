@@ -21,13 +21,29 @@ class FootballMatchAPI {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
-            },
+                'Content-Type': 'application/json'  // Certifique-se de que o cabeçalho Content-Type está definido corretamente
+            },           
+            referrerPolicy: 'no-referrer-when-downgrade'
         };
-
-        const response = await fetch("http://localhost/api/footballer/data-logged", requestOptions);
-        const result = await response.json();
-        return result;
+    
+        try {
+            const response = await fetch("http://localhost/api/footballer/data-logged", requestOptions);
+    
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || `Erro ao buscar dados do futebolista. Status: ${response.status}`);
+            }
+    
+            const result = await response.json();
+            return result;
+        } catch (error) {
+            console.error('Erro na requisição:', error.message);
+            throw error;
+        }
     }
+    
+    
+    
 }
 
 export default FootballMatchAPI;

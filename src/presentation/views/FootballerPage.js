@@ -1,42 +1,52 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import FootballerService from '../../infrastructure/services/FootballerService';
+import Modalities from '../components/Modalities';
+import Positions from '../components/Positions';
 import Header from '../components/Header';
-import LoginSection from '../components/LoginSection';
-import AuthenticationService from '../../domain/services/AuthenticationService';
+const FootballerPage = () => {
+    const [footballerData, setFootballerData] = useState(null);
+    const navigate = useNavigate();
 
-const LoginPage = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const navigate = useNavigate();  // Hook para redirecionamento
+    useEffect(() => {
+        const fetchFootballerData = async () => {
+            try {
+                const footballerService = new FootballerService();
+                const data = await footballerService.getFootballerData();
+                setFootballerData(data);
+            } catch (error) {
+                console.error('Erro ao buscar dados do futebolista:', error);
+                navigate('/login');  // Redireciona para a página de login se houver erro
+            }
+        };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const authService = new AuthenticationService();
+        fetchFootballerData();
+    }, [navigate]);
 
-        try {
-           
-            const footballer = await authService.login(email, password);
-            
-            alert(footballer);
-            console.log('Login realizado com sucesso', footballer);
-            navigate('/footballer');  // Redireciona para a página do futebolista
-        } catch (error) {
-            console.error('Falha no login', error.message);
-        }
-    };
+    if (!footballerData) {
+        return <div>Carregando...</div>;
+    }
 
     return (
+        <Header />
         <div>
-            <Header />
-            <LoginSection 
-                onSubmit={handleSubmit}
-                email={email}
-                setEmail={setEmail}
-                password={password}
-                setPassword={setPassword}
-            />
+            <h1>{footballerData.footballer.name}</h1>
+            <p>Email: {footballerData.footballer.email}</p>
+            <p>Documento: {footballerData.footballer.document}</p>
+            <p>Telefone: {footballerData.footballer.phone}</p>
+            <p>Status: {footballerData.footballer.status}</p>
+            <p>Overall: {footballerData.footballer.overall}</p>
+            <p>Altura: {footballerData.footballer.height} m</p>
+            <p>Peso: {footballerData.footballer.weight} kg</p>
+            <p>Pé dominante: {footballerData.footballer.dominant_foot}</p>
+
+            <h2>Modalidades</h2>
+            <Modalities modalities={footballerData.modalities} />
+
+            <h2>Posições</h2>
+            <Positions positions={footballerData.positions} />
         </div>
     );
 };
 
-export default LoginPage;
+export default FootballerPage;
