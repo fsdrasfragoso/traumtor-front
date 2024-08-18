@@ -15,6 +15,8 @@ const FootballerPage = () => {
                 const footballerService = new FootballerService();
                 const data = await footballerService.getFootballerData();
                 setFootballerData(data);
+
+                localStorage.setItem('userName', data.footballer.name);
             } catch (error) {
                 console.error('Erro ao buscar dados do futebolista:', error);
                 navigate('/login');  // Redireciona para a página de login se houver erro
