@@ -4,6 +4,7 @@ import FutsalField from '../views/futsal/FutsalField';
 import SocietyField from '../views/society/SocietyField';
 import CampoField from '../views/campo/CampoField';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import '../styles/HomePage.css';
 
 const HomePage = () => {
@@ -33,6 +34,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

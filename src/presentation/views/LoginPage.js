@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import LoginSection from '../components/LoginSection';
 import AuthenticationService from '../../domain/services/AuthenticationService';
+import Footer from '../components/Footer';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -40,6 +41,7 @@ const LoginPage = () => {
         password={password} 
         setPassword={setPassword} 
       />
+      <Footer/>
     </div>
   );
 };

@@ -4,7 +4,7 @@ import FootballerService from '../../infrastructure/services/FootballerService';
 import Modalities from '../components/Modalities';
 import Positions from '../components/Positions';
 import Header from '../components/Header';
-
+import Footer from '../components/Footer';
 const FootballerPage = () => {
     const [footballerData, setFootballerData] = useState(null);
     const navigate = useNavigate();
@@ -49,6 +49,7 @@ const FootballerPage = () => {
 
             <h2>Posições</h2>
             <Positions positions={footballerData.positions} />
+            <Footer/>
         </div>
     );
 };

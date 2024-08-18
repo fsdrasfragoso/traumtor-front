@@ -1,10 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Header = () => {
-  // Simulação do estado de autenticação
+  const navigate = useNavigate(); // useNavigate substitui useHistory
   const isAuthenticated = localStorage.getItem('userName') !== null;
   const userName = localStorage.getItem('userName');
+
+  const handleLogout = () => {
+    localStorage.removeItem('userName'); // Remove o nome de usuário do localStorage
+    navigate('/login'); // Redireciona o usuário para a página de login
+  };
 
   return (
     <header className="main_menu home_menu">
@@ -29,11 +34,28 @@ const Header = () => {
                   
                   <li className="nav-item">
                     {isAuthenticated ? (
-                      <span className="nav-link">Olá, {userName}!</span>
+                      <>
+                        <Link className="nav-link" to="/footballer">Olá, {userName}!</Link>
+                       
+                      </>
                     ) : (
                       <Link className="nav-link" to="/login">Login</Link>
                     )}
                   </li>
+                  {isAuthenticated ? (
+                    <li>
+                      <>                        
+                        <button 
+                          className="nav-link" 
+                          onClick={handleLogout} 
+                          style={{ cursor: 'pointer' }}>
+                          Sair
+                        </button>
+                      </>
+                    </li>
+                    ) : (
+                      <spn></spn>
+                    )}
                 </ul>
               </div>
               <div className="hearer_icon d-flex align-items-center">
