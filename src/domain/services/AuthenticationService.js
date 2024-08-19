@@ -1,22 +1,21 @@
 // src/application/services/AuthenticationService.js
-import FootballerService from '../../infrastructure/services/FootballerService'; // Assuming this is the correct service
+import AuthService from '../../infrastructure/services/AuthService';
 import LoginCredentials from '../../domain/value-objects/LoginCredentials';
 
 class AuthenticationService {
   constructor() {
-    this.footballerService = new FootballerService();
+    this.authService = new AuthService();
   }
 
   async login(email, password) {
     const credentials = new LoginCredentials(email, password);
     credentials.validate();
 
-    const footballer = await this.footballerService.authenticate(credentials);
+    const result = await this.authService.login(credentials);
     
-    if (footballer) {
-      // Store the token in localStorage or cookies based on your needs
-      localStorage.setItem('token', footballer.token);
-      return footballer;
+    if (result && result.access_token) {
+      localStorage.setItem('token', result.access_token);
+      return result;
     } else {
       throw new Error('Invalid login credentials');
     }

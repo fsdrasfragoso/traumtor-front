@@ -1,21 +1,15 @@
 // src/infrastructure/services/FootballerService.js
-import FootballMatchAPI from '../api/FootballMatchAPI';
+import FootballerAPI from '../api/FootballerAPI';
+import AuthService from './AuthService';
 
 class FootballerService {
     constructor() {
-        this.api = new FootballMatchAPI();
-    }
-
-    async authenticate(credentials) {
-        const result = await this.api.login(credentials);
-        if (result.access_token) {
-            localStorage.setItem('accessToken', result.access_token);
-        }
-        return result;
+        this.api = new FootballerAPI();
+        this.authService = new AuthService(); // Usar AuthService para gerenciar o token
     }
 
     async getFootballerData() {
-        const token = localStorage.getItem('accessToken');
+        const token = this.authService.getToken();
         if (!token) {
             throw new Error('Token não encontrado. O usuário não está logado.');
         }

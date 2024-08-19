@@ -43,16 +43,22 @@ const Header = () => {
                     )}
                   </li>
                   {isAuthenticated ? (
-                    <li>
-                      <>                        
+                    <>
+                    <li>                     
+                    <Link className="nav-link" to="/criar-grupo">Criar Grupo</Link>
+                      
+                    </li>
+                   <li>
+                                            
                         <button 
                           className="nav-link" 
                           onClick={handleLogout} 
                           style={{ cursor: 'pointer' }}>
                           Sair
                         </button>
+                     
+                    </li>                    
                       </>
-                    </li>
                     ) : (
                       <spn></spn>
                     )}
