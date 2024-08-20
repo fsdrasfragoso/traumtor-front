@@ -27,7 +27,7 @@ const LoginPage = () => {
     } catch (error) {
       console.error('Falha no login', error.message);
       // Exibir mensagem de erro para o usuário
-      alert('errror');
+      alert('Falha no login '+error.message);
     }
   };
 

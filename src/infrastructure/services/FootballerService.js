@@ -5,7 +5,7 @@ import AuthService from './AuthService';
 class FootballerService {
     constructor() {
         this.api = new FootballerAPI();
-        this.authService = new AuthService(); // Usar AuthService para gerenciar o token
+        this.authService = new AuthService(); 
     }
 
     async getFootballerData() {

@@ -1,6 +1,6 @@
 // src/domain/services/GroupService.js
 import GroupAPI from '../../infrastructure/api/GroupAPI';
-import AuthService from './AuthenticationService';
+import AuthService from './AuthService';
 
 class GroupService {
     constructor() {

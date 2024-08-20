@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import GroupService from '../../domain/services/GroupService'; // Ajuste o caminho conforme a sua estrutura
+import GroupService from '../../infrastructure/services/GroupService'; 
+import ModalityService from '../../infrastructure/services/ModalityService'; 
 
 const CreateGroupPage = () => {
     const [groupName, setGroupName] = useState('');
     const [address, setAddress] = useState('');
     const [modality, setModality] = useState('');
     const [schedules, setSchedules] = useState([{ day: '', startTime: '', endTime: '' }]);
-    const groupService = new GroupService(); // Instancia o serviço de grupo
-
+    const [modalities, setModalities] = useState([]); 
+    const groupService = new GroupService(); 
+    const modalityService = new ModalityService(); 
     const daysOfWeek = [
         'Domingo', 
         'Segunda-feira', 
@@ -19,6 +21,20 @@ const CreateGroupPage = () => {
         'Sexta-feira', 
         'Sábado'
     ];
+
+    useEffect(() => {
+        const fetchModalities = async () => {
+            try {
+                const result = await modalityService.getAllModalities();
+                console.log(result);
+                setModalities(result); 
+            } catch (error) {
+                console.error('Erro ao buscar modalidades:', error.message);
+            }
+        };
+
+        fetchModalities();
+    }, []); 
 
     const handleAddSchedule = () => {
         setSchedules([...schedules, { day: '', startTime: '', endTime: '' }]);
@@ -98,16 +114,22 @@ const CreateGroupPage = () => {
                                             />
                                         </div>
                                         <div className="col-md-12 form-group p_star">
-                                            <input 
-                                                type="text" 
+                                            <label>Modalidade</label>
+                                            <select 
                                                 className="form-control" 
                                                 id="modality" 
                                                 name="modality" 
                                                 value={modality}
                                                 onChange={(e) => setModality(e.target.value)}
-                                                placeholder="Modalidade"
-                                                required 
-                                            />
+                                                required
+                                            >
+                                                <option value="">Selecione a Modalidade</option>
+                                                {modalities.map((modalityOption) => (
+                                                    <option key={modalityOption.id} value={modalityOption.name}>
+                                                        {modalityOption.name}
+                                                    </option>
+                                                ))}
+                                            </select>
                                         </div>
                                         <div className="col-md-12 form-group p_star">
                                             <label>Horários</label>
